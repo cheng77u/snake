@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>炫彩贪吃蛇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            touch-action: manipulation;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            margin-top: 2vh;
+            width: 95vw;
+            max-width: 600px;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            border: 3px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 150, 0.2);
+        }
+
+        #scorePanel {
+            font-size: 24px;
+            margin: 2vh 0;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6vw;
+            color: #ff5555;
+            text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
+            display: none;
+            text-align: center;
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 4vh;
+            display: grid;
+            grid-template: 
+                ". up ." 1fr
+                "left . right" 1fr
+                ". down ." 1fr / 1fr 1fr 1fr;
+            gap: 2vw;
+            width: 60vw;
+            max-width: 300px;
+            touch-action: none;
+        }
+
+        .control-btn {
+            width: 12vw;
+            height: 12vw;
+            max-width: 80px;
+            max-height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6vw;
+            color: rgba(255, 255, 255, 0.8);
+            user-select: none;
+            transition: all 0.1s;
+            backdrop-filter: blur(5px);
+        }
+
+        .control-btn:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0.85);
+        }
+
+        .restartBtn {
+            padding: 12px 24px;
+            font-size: 18px;
+            background: #4CAF50;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2vh;
+        }
+
+        .restartBtn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div id="scorePanel">得分: 0</div>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameOver">游戏结束!<br><span style="font-size: 50%;">点击重试</span></div>
+    </div>
+    <div class="control-panel">
+        <div class="control-btn" data-direction="up">↑</div>
+        <div class="control-btn" data-direction="left">←</div>
+        <div class="control-btn" data-direction="right">→</div>
+        <div class="control-btn" data-direction="down">↓</div>
+    </div>
+    <button class="restartBtn">重新开始</button>
+   <script src="./index.js"></script>
+</body>
+</html>
